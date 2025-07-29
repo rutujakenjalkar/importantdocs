@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.30; //This is the comment
+pragma solidity 0.8.24; //This is the comment
 //First contract
 contract SimpleStorage{
     // Favorite number is zero if no value given
@@ -18,7 +18,7 @@ contract SimpleStorage{
 
     Person[] public people;// dynamic arrays
 
-
+    mapping(string => uint256) public nameToFavoriteNumber;
 
 
 
@@ -31,6 +31,17 @@ contract SimpleStorage{
     function retrieve () public view returns(uint256){
         return myfavoriteNumber;
     }
+   
+    //calldata,memory,storage
+
+
+    function addPerson(uint256  _favoritenumber,string memory _name) public {
+        people.push(Person(_favoritenumber,_name));
+        //ADD to the map
+        nameToFavoriteNumber[_name]=_favoritenumber;
+    }
+    
+}
    
 
 
